@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>stillward labs — Independent Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:       #f8f8f8;
+    --bg2:      #f1f1f1;
+    --bg3:      #e8e8e8;
+    --ink:      #2a2a2a;
+    --ink2:     #444444;
+    --ink3:     #888888;
+    --rule:     rgba(51,51,51,0.09);
+    --rule-med: rgba(51,51,51,0.16);
+    --accent:   #333333;
+    --accent2:  #888888;
+    --serif:    'Jost', sans-serif;
+    --mono:     'IBM Plex Mono', monospace;
+    --sans:     'Jost', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 18px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* Fine ruled paper texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 27px,
+      rgba(28,27,25,0.04) 27px,
+      rgba(28,27,25,0.04) 28px
+    );
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(248,248,248,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .nav-wordmark {
+    display: block;
+    text-decoration: none;
+  }
+
+  .nav-wordmark img {
+    height: 32px;
+    width: auto;
+    display: block;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+  }
+
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--ink); }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    padding: 100px 56px 80px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  /* hero mark removed — logo image carries the identity */
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 1px;
+    background: var(--ink3);
+  }
+
+  .hero-logo-img {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    margin-bottom: 40px;
+    
+  }
+
+  .hero-statement {
+    font-family: var(--sans);
+    font-size: clamp(40px, 5.5vw, 72px);
+    font-weight: 300;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    max-width: 820px;
+    
+  }
+
+  .hero-statement em {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  .hero-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--ink3);
+    margin: 36px 0;
+    
+  }
+
+  .hero-sub {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--ink2);
+    max-width: 540px;
+    line-height: 1.75;
+    
+  }
+
+  /* ── SECTION SHARED ── */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .section-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 56px;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .eyebrow::before {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 1px;
+    background: var(--ink3);
+  }
+
+  h2 {
+    font-family: var(--sans);
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 300;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 24px;
+  }
+
+  h2 em {
+    font-style: normal;
+    font-weight: 600;
+  }
+
+  /* ── PHILOSOPHY ── */
+  .philosophy {
+    padding: 100px 0;
+    border-top: 1px solid var(--rule-med);
+  }
+
+  .philosophy-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+    margin-top: 20px;
+  }
+
+  .philosophy-body p {
+    font-size: 17px;
+    color: var(--ink2);
+    line-height: 1.85;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .philosophy-body p:last-child { margin-bottom: 0; }
+
+  .philosophy-tenets {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--rule-med);
+  }
+
+  .tenet {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  .tenet-num {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.1em;
+    padding-top: 3px;
+  }
+
+  .tenet-text {
+    font-size: 16px;
+    color: var(--ink2);
+    line-height: 1.7;
+    font-weight: 400;
+  }
+
+  .tenet-text strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── PRODUCTS ── */
+  .products {
+    padding: 100px 0;
+    border-top: 1px solid var(--rule-med);
+  }
+
+  .products-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 60px;
+    background: var(--rule);
+    border: 1px solid var(--rule-med);
+  }
+
+  .product-card {
+    background: var(--bg);
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    transition: background 0.3s;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .product-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--ink);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .product-card:hover { background: var(--bg2); }
+  .product-card:hover::before { transform: scaleX(1); }
+
+  .product-card.coming-soon {
+    opacity: 0.7;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .product-tag {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .tag-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ink);
+    flex-shrink: 0;
+  }
+
+  .tag-dot.dim { background: var(--ink3); }
+
+  .product-name {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--ink);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 16px;
+  }
+
+  .product-desc {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--ink2);
+    line-height: 1.75;
+    flex: 1;
+    margin-bottom: 36px;
+  }
+
+  .product-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+
+  .product-pill {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: var(--ink3);
+    border: 1px solid var(--rule-med);
+    padding: 4px 10px;
+    text-transform: uppercase;
+  }
+
+  .product-link {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: gap 0.2s;
+  }
+
+  .product-card:hover .product-link { gap: 12px; }
+
+  .product-link-disabled {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--ink3);
+    text-transform: uppercase;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    padding: 100px 0;
+    border-top: 1px solid var(--rule-med);
+    background: var(--bg2);
+  }
+
+  .about-layout {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-top: 48px;
+  }
+
+  .about-aside {
+    position: sticky;
+    top: 100px;
+  }
+
+  /* Large decorative mark for about section */
+  .about-img {
+    width: 260px;
+    height: auto;
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .about-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid var(--rule-med);
+  }
+
+  .meta-row {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--ink3);
+    text-transform: uppercase;
+  }
+
+  .meta-value {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink2);
+  }
+
+  .about-body p {
+    font-size: 17px;
+    font-weight: 400;
+    color: var(--ink2);
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
+
+  .about-body p:last-child { margin-bottom: 0; }
+
+  .about-body p strong {
+    color: var(--ink);
+    font-weight: 500;
+  }
+
+  /* ── CONTACT / FOOTER ── */
+  footer {
+    border-top: 1px solid var(--rule-med);
+    padding: 60px 56px 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 32px;
+  }
+
+  .footer-logo img {
+    height: 56px;
+    width: auto;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .footer-tagline {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink3);
+    line-height: 1.7;
+  }
+
+  .footer-col-title {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--ink3);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-links a {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--ink2);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .footer-links a:hover { color: var(--ink); }
+
+  .footer-links a span {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-bottom {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-copy {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink3);
+    letter-spacing: 0.06em;
+  }
+
+  .footer-disclaimer {
+    font-size: 11px;
+    color: var(--ink3);
+    font-weight: 300;
+    max-width: 500px;
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 120px 24px 60px; }
+    .section-inner { padding: 0 24px; }
+    .hero-mark { display: none; }
+    .philosophy-layout { grid-template-columns: 1fr; gap: 48px; }
+    .products-grid { grid-template-columns: 1fr; }
+    .product-card.coming-soon { pointer-events: auto; }
+    .about-layout { grid-template-columns: 1fr; }
+    .about-aside { position: static; }
+    .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+    footer { padding: 48px 24px 36px; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+    .footer-disclaimer { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="/" class="nav-wordmark"><img src="stillward-logo.png" alt="Stillward Labs"></a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#products">Products</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="hero-inner">
+    <img src="stillward-logo.png" alt="Stillward Labs" class="hero-logo-img">
+    <div class="hero-statement">
+      Software that shows<br>its <em>work.</em>
+    </div>
+    <div class="hero-rule"></div>
+    <p class="hero-sub">Small tools built with rigorous methodology, transparent math, and respect for the person using them.</p>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="section-inner">
+    <div class="eyebrow">Approach</div>
+    <div class="philosophy-layout">
+      <div>
+        <h2>Analytical tools<br>for <em>analytical people</em></h2>
+        <div class="philosophy-body">
+          <p>Most software in the personal finance and strategy space treats computation as a black box. You get a number. You're expected to trust it.</p>
+          <p>That's not how good analysis works. Good analysis shows its assumptions, documents its formulas, and gives you enough to check the work. stillward labs builds software that operates this way.</p>
+          <p>The tools are small, deliberate, and built for people who read the footnotes.</p>
+        </div>
+      </div>
+      <div class="philosophy-tenets">
+        <div class="tenet">
+          <div class="tenet-num">01</div>
+          <div class="tenet-text"><strong>Methodology is not a secret.</strong> Every formula, every assumption, every convention is documented — not summarized. You should be able to audit exactly what the software computed.</div>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">02</div>
+          <div class="tenet-text"><strong>Results should be reproducible.</strong> Given the same inputs, you should get the same output. Variability in a tool that is supposed to help you reason about variability is a design failure.</div>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">03</div>
+          <div class="tenet-text"><strong>Your data belongs to you.</strong> No accounts, no telemetry, no cloud dependency. Local computation, local storage, offline by default.</div>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">04</div>
+          <div class="tenet-text"><strong>Honest about limitations.</strong> Every model has constraints. They're stated clearly, not buried or omitted to make the output look more confident than it is.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="section-inner">
+    <div class="eyebrow">Products</div>
+    <h2>What we build</h2>
+    <div class="products-grid">
+
+      <!-- Retirement Risk Lab -->
+      <a href="https://retirementrisklab.app" class="product-card" target="_blank" rel="noopener">
+        <div class="product-tag">
+          <span class="tag-dot"></span>
+          Available now
+        </div>
+        <div class="product-name">Retirement<br>Risk Lab</div>
+        <p class="product-desc">Offline Monte Carlo retirement simulation for analytical DIY planners. Fixed-seed reproducibility, Wilson 95% confidence intervals on every estimate, and a full math transparency block on every run. Not a calculator — a simulation lab.</p>
+        <div class="product-pills">
+          <span class="product-pill">Monte Carlo</span>
+          <span class="product-pill">Offline</span>
+          <span class="product-pill">Deterministic</span>
+          <span class="product-pill">macOS · Windows</span>
+        </div>
+        <div class="product-link">
+          retirementrisklab.app <span style="font-size:14px;">→</span>
+        </div>
+      </a>
+
+      <!-- Blackjack Wonk -->
+      <div class="product-card coming-soon">
+        <div class="product-tag">
+          <span class="tag-dot dim"></span>
+          Also available
+        </div>
+        <div class="product-name">Blackjack<br>Wonk</div>
+        <p class="product-desc">Rigorous blackjack strategy analysis. The same design philosophy — documented methodology, transparent computation, built for people who want to understand the math behind the game rather than just memorize a chart.</p>
+        <div class="product-pills">
+          <span class="product-pill">Strategy analysis</span>
+          <span class="product-pill">Offline</span>
+          <span class="product-pill">Card counting</span>
+        </div>
+        <div class="product-link-disabled">Available separately</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-inner">
+    <div class="eyebrow">About</div>
+    <div class="about-layout">
+      <div class="about-aside">
+        <img src="stillward-logo.png" alt="Stillward Labs" class="about-img">
+        <div class="about-meta">
+          <div class="meta-row">
+            <div class="meta-label">Type</div>
+            <div class="meta-value">Independent software</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Location</div>
+            <div class="meta-value">Grand Island, New York</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Focus</div>
+            <div class="meta-value">Analytical tools, personal finance, strategy</div>
+          </div>
+          <div class="meta-row">
+            <div class="meta-label">Philosophy</div>
+            <div class="meta-value">Show the work</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-body">
+        <p>stillward labs is a one-person independent software operation. The tools are built by someone who uses them — not a product team optimizing for engagement metrics, not a startup chasing a market, just a developer who got frustrated with software that treated computation as a black box and decided to build something better.</p>
+        <p><strong>Retirement Risk Lab</strong> came from a straightforward question: if you run a Monte Carlo retirement simulation and get 73% survival probability, how confident should you be in that number? Most tools don't tell you. RRL does — Wilson confidence intervals, trial quality labels, and a full math transparency block on every run. Fixed-seed reproducibility so you can change one assumption, rerun, and know exactly what moved.</p>
+        <p><strong>Blackjack Wonk</strong> came from the same instinct applied to a different domain. Blackjack strategy is well-understood mathematically, but most strategy tools give you a chart without showing you the expected value calculations behind each decision. Wonk shows the work.</p>
+        <p>The common thread is tools for people who read the footnotes. If you're comfortable with a confidence interval, want to audit a formula, and prefer your data to stay on your own machine — these tools were built for you.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="stillward-logo.png" alt="Stillward Labs">
+      <div class="footer-tagline">Independent software built with<br>transparent methodology.</div>
+    </div>
+    <div>
+      <div class="footer-col-title">Products</div>
+      <ul class="footer-links">
+        <li>
+          <a href="https://retirementrisklab.app" target="_blank" rel="noopener">
+            Retirement Risk Lab
+            <span>retirementrisklab.app →</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            Blackjack Wonk
+            <span>available separately</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2026 stillward labs. All rights reserved.</div>
+    <div class="footer-disclaimer">Retirement Risk Lab is a statistical simulation tool. Outputs are probability estimates under stated assumptions, not financial advice.</div>
+  </div>
+</footer>
+
+</body>
+</html>
