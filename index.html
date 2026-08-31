@@ -6,21 +6,20 @@
 <title>stillward labs — Independent Software</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;600&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:       #eceef0;
-  --bg2:      #e4e6e9;
-  --bg3:      #dddfe3;
-  --bg4:      #d5d8dc;
-  --ink:      #1a1c1f;
-  --ink2:     #3d4148;
-  --ink3:     #7a8090;
-  --rule:     rgba(30,33,40,0.08);
-  --rule-med: rgba(30,33,40,0.14);
-  --accent:   #2b4c8c;
-  --sans:     'Jost', sans-serif;
-  --mono:     'IBM Plex Mono', monospace;
+  --bg:        #f0f2f5;
+  --bg2:       #e7eaee;
+  --bg3:       #dee2e7;
+  --ink:       #1c1917;
+  --ink2:      #3c4252;
+  --ink3:      #79838f;
+  --rule:      rgba(30,42,62,0.08);
+  --rule-med:  rgba(30,42,62,0.14);
+  --accent:    #2c4a6a;
+  --sans:      'Jost', sans-serif;
+  --mono:      'IBM Plex Mono', monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,42 +29,52 @@ body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--sans);
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.7;
   overflow-x: hidden;
 }
+
+/* ── LOGO ── */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.logo-sw {
+  font-family: var(--sans);
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.03em;
+}
+.logo-la {
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--ink2);
+  letter-spacing: -0.01em;
+  margin-left: 5px;
+}
+nav .logo-sw,
+nav .logo-la { font-size: 18px; }
 
 /* ── NAV ── */
 nav {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 16px 48px;
+  padding: 14px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(236,238,240,0.94);
-  backdrop-filter: blur(12px);
+  background: rgba(240,242,245,0.94);
+  backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--rule-med);
 }
-
-.nav-wordmark {
-  display: block;
-  text-decoration: none;
-}
-
-.nav-wordmark img {
-  height: 26px;
-  width: auto;
-  display: block;
-}
-
 .nav-links {
   list-style: none;
   display: flex;
-  gap: 28px;
+  gap: 30px;
 }
-
 .nav-links a {
   font-family: var(--mono);
   font-size: 10px;
@@ -75,165 +84,139 @@ nav {
   text-transform: uppercase;
   transition: color 0.2s;
 }
-
 .nav-links a:hover { color: var(--ink); }
 
 /* ── HERO ── */
 .hero {
-  position: relative;
-  padding: 88px 48px 0;
-  z-index: 1;
+  padding-top: 80px;
 }
-
 .hero-inner {
   max-width: 1080px;
   margin: 0 auto;
+  padding: 64px 48px 0;
 }
-
 .hero-top {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 56px;
+  gap: 72px;
   align-items: end;
-  padding-bottom: 40px;
+  padding-bottom: 36px;
   border-bottom: 1px solid var(--rule-med);
 }
-
-.hero-logo-img {
-  display: block;
-  width: 100%;
-  max-width: 560px;
-  height: auto;
+.hero-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
-
+.hero-mark-wrap {
+  display: block;
+}
+.hero-wordmark {
+  display: flex;
+  align-items: baseline;
+  line-height: 1;
+}
+.hero-wordmark .logo-sw {
+  font-size: clamp(48px, 6vw, 78px);
+}
+.hero-wordmark .logo-la {
+  font-size: clamp(48px, 6vw, 78px);
+  margin-left: 12px;
+}
 .hero-right {
   padding-bottom: 6px;
 }
-
-.hero-eyebrow {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  color: var(--ink3);
-  text-transform: uppercase;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.hero-eyebrow::before {
-  content: '';
-  display: block;
-  width: 20px;
-  height: 1px;
-  background: var(--ink3);
-}
-
-.hero-statement {
-  font-family: var(--sans);
-  font-size: clamp(34px, 4vw, 56px);
-  font-weight: 300;
-  line-height: 1.1;
-  letter-spacing: -0.025em;
-  color: var(--ink);
-}
-
-.hero-statement em {
-  font-style: normal;
-  font-weight: 600;
-  color: var(--accent);
-}
-
-.hero-rule {
-  width: 32px;
-  height: 1px;
-  background: var(--ink3);
-  margin: 22px 0;
-}
-
-.hero-sub {
-  font-size: 15px;
-  font-weight: 400;
-  color: var(--ink2);
-  max-width: 380px;
-  line-height: 1.8;
-}
-
-.hero-bottom {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-  padding: 22px 0;
-}
-
-.hero-stat {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.hero-stat-num {
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--accent);
-  letter-spacing: 0.1em;
-  font-weight: 500;
-}
-
-.hero-stat-label {
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--ink3);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.hero-stat-divider {
-  width: 1px;
-  height: 28px;
-  background: var(--rule-med);
-}
-
-/* ── SECTION SHARED ── */
-section { position: relative; z-index: 1; }
-
-.section-inner {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 48px;
-}
-
 .eyebrow {
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.22em;
   color: var(--ink3);
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   display: flex;
   align-items: center;
   gap: 10px;
 }
-
 .eyebrow::before {
   content: '';
   display: block;
   width: 16px;
   height: 1px;
   background: var(--ink3);
+  flex-shrink: 0;
 }
-
-h2 {
-  font-family: var(--sans);
-  font-size: clamp(24px, 2.8vw, 38px);
+.hero-statement {
+  font-size: clamp(36px, 4.5vw, 60px);
   font-weight: 300;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
   color: var(--ink);
-  margin-bottom: 18px;
+}
+.hero-statement em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--accent);
+}
+.hero-rule {
+  width: 28px;
+  height: 1px;
+  background: var(--ink3);
+  margin: 22px 0;
+}
+.hero-sub {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink2);
+  line-height: 1.85;
+  max-width: 390px;
+}
+.hero-stats {
+  display: flex;
+  padding: 18px 0;
+}
+.hero-stat {
+  flex: 1;
+  padding-right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.hero-stat + .hero-stat {
+  border-left: 1px solid var(--rule-med);
+  padding-left: 24px;
+  padding-right: 0;
+}
+.stat-val {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--ink3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
+/* ── SHARED ── */
+section { position: relative; z-index: 1; }
+.section-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 48px;
+}
+h2 {
+  font-size: clamp(26px, 3vw, 42px);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
 h2 em {
   font-style: normal;
   font-weight: 600;
@@ -242,68 +225,68 @@ h2 em {
 
 /* ── PHILOSOPHY ── */
 .philosophy {
-  padding: 64px 0;
+  padding: 80px 0;
+  background: var(--bg);
   border-top: 1px solid var(--rule-med);
   border-bottom: 1px solid var(--rule-med);
-  background: var(--bg);
 }
-
 .philosophy-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 64px;
+  gap: 72px;
   align-items: start;
-  margin-top: 12px;
+  margin-top: 8px;
 }
 
-.philosophy-body p {
-  font-size: 15px;
+/* Left: narrative */
+.philosophy-narrative p {
+  font-size: 16px;
+  font-weight: 400;
   color: var(--ink2);
-  line-height: 1.9;
-  margin-bottom: 16px;
+  line-height: 1.95;
+  margin-bottom: 20px;
 }
+.philosophy-narrative p:last-child { margin-bottom: 0; }
 
-.philosophy-body p:last-child { margin-bottom: 0; }
-
+/* Right: tenets */
 .philosophy-tenets {
   border-top: 1px solid var(--rule-med);
 }
-
 .tenet {
-  padding: 18px 0;
+  padding: 20px 0;
   border-bottom: 1px solid var(--rule);
   display: grid;
   grid-template-columns: 26px 1fr;
   gap: 14px;
-  align-items: start;
 }
-
 .tenet-num {
   font-family: var(--mono);
   font-size: 9px;
   color: var(--accent);
   letter-spacing: 0.06em;
-  padding-top: 3px;
+  padding-top: 2px;
 }
-
 .tenet-text {
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 400;
   color: var(--ink2);
-  line-height: 1.75;
+  line-height: 1.8;
 }
-
 .tenet-text strong {
+  display: block;
   color: var(--ink);
-  font-weight: 500;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 14px;
+  letter-spacing: 0.01em;
 }
 
 /* ── PRODUCTS ── */
 .products {
-  padding: 64px 0;
-  border-bottom: 1px solid var(--rule-med);
+  padding: 80px 0;
   background: var(--bg2);
+  border-bottom: 1px solid var(--rule-med);
 }
-
 .products-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -312,258 +295,157 @@ h2 em {
   background: var(--rule-med);
   border: 1px solid var(--rule-med);
 }
-
 .product-card {
   background: var(--bg);
   padding: 36px;
   display: flex;
   flex-direction: column;
-  transition: background 0.2s;
   text-decoration: none;
   color: inherit;
   position: relative;
-  overflow: hidden;
+  transition: background 0.2s;
 }
-
-.product-card::after {
+.product-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+  height: 3px;
+  background: var(--card-color, var(--accent));
 }
-
 .product-card:hover { background: var(--bg2); }
-.product-card:hover::after { transform: scaleX(1); }
 
-.product-card.coming-soon {
-  opacity: 0.65;
-  cursor: default;
-  pointer-events: none;
+/* Per-card colors */
+.card-lapilli { --card-color: #b45309; }
+.card-bjt     { --card-color: #1e293b; }
+.card-bsl     { --card-color: #0f766e; }
+.card-rrl     { --card-color: #2c4a6a; }
+.card-rrl .product-icon { object-fit: contain; background: #f8f9fa; padding: 10px; }
+
+.product-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin-bottom: 20px;
+  display: block;
+  /* subtle shadow so icon pops off warm bg */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
 }
-
-.product-tag {
-  font-family: var(--mono);
-  font-size: 9px;
-  letter-spacing: 0.14em;
-  color: var(--ink3);
-  text-transform: uppercase;
-  margin-bottom: 18px;
+/* Fallback if icon fails to load */
+.product-icon-fallback {
+  width: 76px;
+  height: 76px;
+  border-radius: 16px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.tag-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--accent);
+  justify-content: center;
+  background: var(--card-color, var(--accent));
   flex-shrink: 0;
 }
-
-.tag-dot.dim { background: var(--ink3); }
+.product-icon-fallback span {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 400;
+  color: white;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
 
 .product-name {
-  font-family: var(--sans);
-  font-size: 24px;
-  font-weight: 300;
+  font-size: 26px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
   color: var(--ink);
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-  margin-bottom: 12px;
+  line-height: 1.15;
+  margin-bottom: 6px;
 }
-
-.product-desc {
-  font-size: 14px;
-  color: var(--ink2);
-  line-height: 1.8;
-  flex: 1;
-  margin-bottom: 24px;
-}
-
-.product-pills {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 24px;
-}
-
-.product-pill {
+.product-tagline {
   font-family: var(--mono);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.08em;
   color: var(--ink3);
-  border: 1px solid var(--rule-med);
-  padding: 3px 8px;
-  text-transform: uppercase;
-  background: var(--bg2);
+  margin-bottom: 20px;
+  line-height: 1.5;
 }
-
-.product-link {
+.product-platform {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 9px;
   letter-spacing: 0.1em;
-  color: var(--accent);
+  color: var(--ink3);
   text-transform: uppercase;
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid var(--rule);
   display: flex;
   align-items: center;
-  gap: 8px;
-  text-decoration: none;
-  transition: gap 0.2s;
+  justify-content: space-between;
 }
-
-.product-card:hover .product-link { gap: 14px; }
-
-.product-link-disabled {
+.product-link-text {
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--ink3);
-  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--card-color, var(--accent));
+  transition: letter-spacing 0.2s;
 }
-
-/* ── ABOUT ── */
-.about {
-  padding: 64px 0;
-  border-bottom: 1px solid var(--rule-med);
-  background: var(--bg);
-}
-
-.about-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 60px;
-  align-items: start;
-  margin-top: 32px;
-}
-
-.about-aside {
-  position: sticky;
-  top: 72px;
-}
-
-.about-img {
-  width: 180px;
-  height: auto;
-  margin-bottom: 22px;
-  display: block;
-}
-
-.about-meta {
-  border-top: 1px solid var(--rule-med);
-}
-
-.meta-row {
-  padding: 12px 0;
-  border-bottom: 1px solid var(--rule);
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-
-.meta-label {
-  font-family: var(--mono);
-  font-size: 8px;
+.product-card:hover .product-link-text {
   letter-spacing: 0.14em;
-  color: var(--ink3);
-  text-transform: uppercase;
-}
-
-.meta-value {
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--ink2);
-}
-
-.about-body p {
-  font-size: 15px;
-  color: var(--ink2);
-  line-height: 1.9;
-  margin-bottom: 18px;
-}
-
-.about-body p:last-child { margin-bottom: 0; }
-
-.about-body p strong {
-  color: var(--ink);
-  font-weight: 500;
 }
 
 /* ── FOOTER ── */
 footer {
-  border-top: 1px solid var(--rule-med);
-  padding: 44px 48px 32px;
-  position: relative;
-  z-index: 1;
+  padding: 48px 48px 32px;
   background: var(--bg3);
+  border-top: 1px solid var(--rule-med);
 }
-
 .footer-inner {
   max-width: 1080px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.4fr 1fr 1fr;
   gap: 48px;
-  align-items: start;
   padding-bottom: 32px;
   border-bottom: 1px solid var(--rule-med);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
 }
-
-.footer-logo img {
-  height: 36px;
-  width: auto;
-  margin-bottom: 14px;
-  display: block;
-}
-
-.footer-tagline {
-  font-size: 13px;
-  font-weight: 300;
+.footer-about {
+  font-size: 14px;
+  font-weight: 400;
   color: var(--ink3);
-  line-height: 1.7;
+  line-height: 1.8;
+  margin-top: 14px;
 }
-
 .footer-col-title {
   font-family: var(--mono);
   font-size: 9px;
   letter-spacing: 0.18em;
   color: var(--ink3);
   text-transform: uppercase;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
-
 .footer-links {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
 .footer-links a {
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 14px;
+  font-weight: 400;
   color: var(--ink2);
   text-decoration: none;
   transition: color 0.2s;
   display: flex;
-  align-items: center;
-  gap: 8px;
+  flex-direction: column;
+  gap: 1px;
 }
-
 .footer-links a:hover { color: var(--ink); }
-
-.footer-links a span {
+.footer-link-domain {
   font-family: var(--mono);
   font-size: 9px;
   color: var(--ink3);
   letter-spacing: 0.06em;
 }
-
 .footer-bottom {
   max-width: 1080px;
   margin: 0 auto;
@@ -573,49 +455,41 @@ footer {
   flex-wrap: wrap;
   gap: 10px;
 }
-
 .footer-copy {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--ink3);
   letter-spacing: 0.06em;
 }
-
-.footer-disclaimer {
+.footer-legal {
   display: flex;
   gap: 20px;
 }
-
-.footer-disclaimer a {
+.footer-legal a {
   font-family: var(--mono);
   font-size: 10px;
   color: var(--ink3);
   text-decoration: none;
-  font-weight: 300;
-  transition: color 0.2s;
   letter-spacing: 0.04em;
+  transition: color 0.2s;
 }
-
-.footer-disclaimer a:hover { color: var(--ink2); }
+.footer-legal a:hover { color: var(--ink2); }
 
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
-  nav { padding: 14px 20px; }
+  nav { padding: 12px 20px; }
   .nav-links { display: none; }
-  .hero { padding: 72px 20px 0; }
-  .hero-top { grid-template-columns: 1fr; gap: 28px; }
-  .hero-logo-img { max-width: 260px; }
+  .hero-inner { padding: 48px 20px 0; }
+  .hero-top { grid-template-columns: 1fr; gap: 36px; }
+  .hero-wordmark .logo-sw,
+  .hero-wordmark .logo-la { font-size: 44px; }
   .section-inner { padding: 0 20px; }
-  .philosophy { padding: 48px 0; }
-  .philosophy-layout { grid-template-columns: 1fr; gap: 36px; }
-  .products { padding: 48px 0; }
+  .philosophy { padding: 56px 0; }
+  .philosophy-layout { grid-template-columns: 1fr; gap: 48px; }
+  .products { padding: 56px 0; }
   .products-grid { grid-template-columns: 1fr; }
-  .product-card.coming-soon { pointer-events: auto; }
-  .about { padding: 48px 0; }
-  .about-layout { grid-template-columns: 1fr; }
-  .about-aside { position: static; }
+  footer { padding: 40px 20px 24px; }
   .footer-inner { grid-template-columns: 1fr; gap: 28px; }
-  footer { padding: 36px 20px 24px; }
   .footer-bottom { flex-direction: column; align-items: flex-start; }
 }
 </style>
@@ -624,10 +498,19 @@ footer {
 
 <!-- NAV -->
 <nav>
-  <a href="/" class="nav-wordmark"><img src="stillward-logo.svg" alt="stillward labs"></a>
+  <a href="/" class="logo">
+    <svg width="28" height="28" viewBox="0 0 44 44" fill="none">
+      <rect width="44" height="44" rx="7" fill="#2c4a6a"/>
+      <line x1="8" y1="34" x2="36" y2="34" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <line x1="12" y1="30" x2="30" y2="13" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <circle cx="12" cy="30" r="3.5" fill="white"/>
+      <circle cx="30" cy="13" r="3.5" fill="white"/>
+    </svg>
+    <span class="logo-sw">stillward</span><span class="logo-la">labs</span>
+  </a>
   <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
     <li><a href="#products">Products</a></li>
-    <li><a href="#about">About</a></li>
   </ul>
 </nav>
 
@@ -635,30 +518,42 @@ footer {
 <section class="hero">
   <div class="hero-inner">
     <div class="hero-top">
-      <img src="stillward-logo.svg" alt="stillward labs" class="hero-logo-img">
+
+      <div class="hero-identity">
+        <svg class="hero-mark-wrap" width="88" height="88" viewBox="0 0 44 44" fill="none">
+          <rect width="44" height="44" rx="8" fill="#2c4a6a"/>
+          <line x1="8" y1="34" x2="36" y2="34" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="12" y1="30" x2="30" y2="13" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="12" cy="30" r="3.5" fill="white"/>
+          <circle cx="30" cy="13" r="3.5" fill="white"/>
+        </svg>
+        <div class="hero-wordmark">
+          <span class="logo-sw">stillward</span><span class="logo-la">labs</span>
+        </div>
+      </div>
+
       <div class="hero-right">
-        <div class="hero-eyebrow">Independent Software</div>
+        <div class="eyebrow">Independent Software · Grand Island, New York</div>
         <div class="hero-statement">
-          Software that shows<br>its <em>work.</em>
+          Software built<br>to <em>last.</em>
         </div>
         <div class="hero-rule"></div>
-        <p class="hero-sub">Small tools built with rigorous methodology, transparent math, and respect for the person using them.</p>
+        <p class="hero-sub">A board game. A blackjack tracker. Cash-flow planning. Retirement simulation. Four tools with one thing in common.</p>
       </div>
+
     </div>
-    <div class="hero-bottom">
+    <div class="hero-stats">
       <div class="hero-stat">
-        <div class="hero-stat-num">LOCAL</div>
-        <div class="hero-stat-label">No cloud, no accounts</div>
+        <div class="stat-val">Buy once</div>
+        <div class="stat-label">No subscriptions ever</div>
       </div>
-      <div class="hero-stat-divider"></div>
       <div class="hero-stat">
-        <div class="hero-stat-num">AUDITABLE</div>
-        <div class="hero-stat-label">Full methodology docs</div>
+        <div class="stat-val">On-device</div>
+        <div class="stat-label">No cloud · no accounts</div>
       </div>
-      <div class="hero-stat-divider"></div>
       <div class="hero-stat">
-        <div class="hero-stat-num">DETERMINISTIC</div>
-        <div class="hero-stat-label">Reproducible results</div>
+        <div class="stat-val">Transparent</div>
+        <div class="stat-label">Methodology documented</div>
       </div>
     </div>
   </div>
@@ -667,34 +562,61 @@ footer {
 <!-- PHILOSOPHY -->
 <section class="philosophy" id="philosophy">
   <div class="section-inner">
-    <div class="eyebrow">Approach</div>
+    <div class="eyebrow">Philosophy</div>
     <div class="philosophy-layout">
-      <div>
-        <h2>Analytical tools<br>for <em>analytical people</em></h2>
-        <div class="philosophy-body">
-          <p>Most software in the personal finance and strategy space treats computation as a black box. You get a number. You're expected to trust it.</p>
-          <p>That's not how good analysis works. Good analysis shows its assumptions, documents its formulas, and gives you enough to check the work. stillward labs builds software that operates this way.</p>
-          <p>The tools are small, deliberate, and built for people who read the footnotes.</p>
-        </div>
+
+      <div class="philosophy-narrative">
+        <h2>Four apps.<br><em>One set of rules.</em></h2>
+
+        <p>Most software now follows the same model. You subscribe to it. Your data lives on someone else's server. The product is optimized not for the person using it, but for the engagement metrics that justify its valuation. The interface evolves to surface what the company needs you to see. The pricing changes when they decide it should. This is rational, from certain business perspectives. It is not great, from the perspective of someone who just wants the software to work.</p>
+
+        <p>stillward labs makes the other kind. Small tools, built carefully, sold once. The price you pay is the price you pay — no tiers that expire, no features behind a second wall, no subscription that resets the relationship every month. What you buy is yours. When updates come, they come included. When you need the software offline, it works.</p>
+
+        <p>The products cover unusual ground. There is a board game, a blackjack tracker, a cash-flow planner, and a retirement simulator. A game and three analytical tools. They don't obviously belong together — except that they were built by the same person, under the same rules, for the same kind of user: someone who reads the footnotes, expects the software to do what it says it does, and does not want to explain their data to a server they don't control.</p>
+
+        <p>The analytical tools add a further commitment: where the software computes something — an expected value, a cash-flow projection, a survival probability — the methodology is written down. Not summarized. Written down. Every formula, every assumption, every convention. You should be able to sit with a spreadsheet and reproduce what the software did, step by step. That is not a common standard. It is the one these tools are held to.</p>
+
+        <p>None of this is novel. Software used to work this way more often than it does now. stillward labs is not trying to make a statement about the industry. It is just trying to make software worth keeping.</p>
       </div>
+
       <div class="philosophy-tenets">
         <div class="tenet">
           <div class="tenet-num">01</div>
-          <div class="tenet-text"><strong>Methodology is not a secret.</strong> Every formula, every assumption, every convention is documented — not summarized. You should be able to audit exactly what the software computed.</div>
+          <div class="tenet-text">
+            <strong>Buy it once. Own it completely.</strong>
+            No subscriptions, no tiers, no recurring fees. The price you see is the price you pay, once. Everything the software does today, plus every update that follows, is included. The relationship doesn't reset every month.
+          </div>
         </div>
         <div class="tenet">
           <div class="tenet-num">02</div>
-          <div class="tenet-text"><strong>Results should be reproducible.</strong> Given the same inputs, you should get the same output. Variability in a tool that is supposed to help you reason about variability is a design failure.</div>
+          <div class="tenet-text">
+            <strong>Your data stays on your device.</strong>
+            No accounts required to use the software. No cloud the app depends on. What you put in stays on your machine, in your control. Where optional iCloud sync is offered, it travels through your own Apple account — not a developer server. The developer never sees your data.
+          </div>
         </div>
         <div class="tenet">
           <div class="tenet-num">03</div>
-          <div class="tenet-text"><strong>Your data belongs to you.</strong> No accounts, no telemetry, no cloud dependency. Local computation, local storage, offline by default.</div>
+          <div class="tenet-text">
+            <strong>The methodology is documented.</strong>
+            Where computation is involved — expected value in blackjack, day-by-day cash-flow projections, Monte Carlo retirement simulation — the math is not a black box. Every formula, every assumption, every convention is written down. You should be able to audit exactly what the software did and reproduce it independently.
+          </div>
         </div>
         <div class="tenet">
           <div class="tenet-num">04</div>
-          <div class="tenet-text"><strong>Honest about limitations.</strong> Every model has constraints. They're stated clearly, not buried or omitted to make the output look more confident than it is.</div>
+          <div class="tenet-text">
+            <strong>Honest about limitations.</strong>
+            Every model has constraints. A survival probability is an estimate under stated assumptions. A cash-flow projection is a projection. These limitations are stated plainly, not buried or omitted to make the output look more confident than it is.
+          </div>
+        </div>
+        <div class="tenet">
+          <div class="tenet-num">05</div>
+          <div class="tenet-text">
+            <strong>Made by one person.</strong>
+            Not a team optimizing for daily active users. One developer who uses what they build, has to live with every design decision they make, and doesn't have a product roadmap shaped by investor expectations. The work is slower. The decisions are more deliberate.
+          </div>
         </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -703,81 +625,85 @@ footer {
 <section class="products" id="products">
   <div class="section-inner">
     <div class="eyebrow">Products</div>
-    <h2>What we build</h2>
+    <h2>What we make</h2>
     <div class="products-grid">
 
-      <a href="https://retirementrisklab.app" class="product-card" target="_blank" rel="noopener">
-        <div class="product-tag">
-          <span class="tag-dot"></span>
-          Available now
+      <!-- Lapilli Stones -->
+      <a href="https://lapilli-stones.com" class="product-card card-lapilli" target="_blank" rel="noopener">
+        <img
+          class="product-icon"
+          src="https://raw.githubusercontent.com/ether-ore/lapilli-stones-web/main/favicon-192.png"
+          alt="Lapilli Stones"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="product-icon-fallback" style="display:none;">
+          <span>ls</span>
         </div>
-        <div class="product-name">Retirement<br>Risk Lab</div>
-        <p class="product-desc">Offline Monte Carlo retirement simulation for analytical DIY planners. Fixed-seed reproducibility, Wilson 95% confidence intervals on every estimate, and a full math transparency block on every run. Not a calculator — a simulation lab.</p>
-        <div class="product-pills">
-          <span class="product-pill">Monte Carlo</span>
-          <span class="product-pill">Offline</span>
-          <span class="product-pill">Deterministic</span>
-          <span class="product-pill">macOS · Windows</span>
-        </div>
-        <div class="product-link">
-          retirementrisklab.app <span style="font-size:12px;">→</span>
-        </div>
-      </a>
-
-      <a href="https://baselinelab.app" class="product-card" target="_blank" rel="noopener">
-        <div class="product-tag">
-          <span class="tag-dot"></span>
-          Available now
-        </div>
-        <div class="product-name">Baseline<br>Lab</div>
-        <p class="product-desc">Personal finance tracking for people who want to own their data. Import CSV exports from any bank or credit card, auto-categorize transactions, track spending and income over time, and maintain a running net worth snapshot — all locally, with no cloud and no subscription. Designed to feed your numbers directly into Retirement Risk Lab.</p>
-        <div class="product-pills">
-          <span class="product-pill">CSV Import</span>
-          <span class="product-pill">Offline</span>
-          <span class="product-pill">One-time purchase</span>
-          <span class="product-pill">macOS · Windows</span>
-        </div>
-        <div class="product-link">
-          baselinelab.app <span style="font-size:12px;">→</span>
+        <div class="product-name">Lapilli Stones</div>
+        <div class="product-tagline">The ancient game of five and capture</div>
+        <div class="product-platform">
+          <span>iPhone · iPad · Mac</span>
+          <span class="product-link-text">lapilli-stones.com →</span>
         </div>
       </a>
 
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section class="about" id="about">
-  <div class="section-inner">
-    <div class="eyebrow">About</div>
-    <div class="about-layout">
-      <div class="about-aside">
-        <img src="stillward-logo.svg" alt="stillward labs" class="about-img">
-        <div class="about-meta">
-          <div class="meta-row">
-            <div class="meta-label">Type</div>
-            <div class="meta-value">Independent software</div>
-          </div>
-          <div class="meta-row">
-            <div class="meta-label">Location</div>
-            <div class="meta-value">Grand Island, New York</div>
-          </div>
-          <div class="meta-row">
-            <div class="meta-label">Focus</div>
-            <div class="meta-value">Analytical tools, personal finance, strategy</div>
-          </div>
-          <div class="meta-row">
-            <div class="meta-label">Philosophy</div>
-            <div class="meta-value">Show the work</div>
-          </div>
+      <!-- BlackjackTrack -->
+      <a href="https://blackjacktrack.com" class="product-card card-bjt" target="_blank" rel="noopener">
+        <img
+          class="product-icon"
+          src="https://blackjacktrack.com/assets/icon.png"
+          alt="BlackjackTrack"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="product-icon-fallback" style="display:none;">
+          <span>bjt</span>
         </div>
-      </div>
-      <div class="about-body">
-        <p>stillward labs is a one-person independent software operation. The tools are built by someone who uses them — not a product team optimizing for engagement metrics, not a startup chasing a market, just a developer who got frustrated with software that treated computation as a black box and decided to build something better.</p>
-        <p><strong>Retirement Risk Lab</strong> came from a straightforward question: if you run a Monte Carlo retirement simulation and get 73% survival probability, how confident should you be in that number? Most tools don't tell you. RRL does — Wilson confidence intervals, trial quality labels, and a full math transparency block on every run. Fixed-seed reproducibility so you can change one assumption, rerun, and know exactly what moved.</p>
-        <p><strong>Baseline Lab</strong> came from a complementary need: before you can simulate retirement outcomes, you need clean, honest data about where your money actually goes. BL imports CSV exports from any bank or credit card, auto-categorizes transactions, and maintains a running net worth snapshot — all on your own machine. It's designed to feed directly into Retirement Risk Lab.</p>
-        <p>The common thread is tools for people who read the footnotes. If you're comfortable with a confidence interval, want to audit a formula, and prefer your data to stay on your own machine — these tools were built for you.</p>
-      </div>
+        <div class="product-name">BlackjackTrack</div>
+        <div class="product-tagline">Know your real results</div>
+        <div class="product-platform">
+          <span>iPhone</span>
+          <span class="product-link-text">blackjacktrack.com →</span>
+        </div>
+      </a>
+
+      <!-- BaselineLab -->
+      <a href="https://baselinelab.app" class="product-card card-bsl" target="_blank" rel="noopener">
+        <img
+          class="product-icon"
+          src="https://raw.githubusercontent.com/ether-ore/baselinelab_web/8f97f5373cafec0de50084be4214b131bf3c54bf/assets/favicon.svg"
+          alt="BaselineLab"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="product-icon-fallback" style="display:none;">
+          <span>bl</span>
+        </div>
+        <div class="product-name">Baseline Lab</div>
+        <div class="product-tagline">See what comes next</div>
+        <div class="product-platform">
+          <span>Mac · iPad</span>
+          <span class="product-link-text">baselinelab.app →</span>
+        </div>
+      </a>
+
+      <!-- Retirement Risk Lab -->
+      <a href="https://retirementrisklab.app" class="product-card card-rrl" target="_blank" rel="noopener">
+        <img
+          class="product-icon"
+          src="https://retirementrisklab.app/assets/branding/logo.png"
+          alt="Retirement Risk Lab"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+        >
+        <div class="product-icon-fallback" style="display:none;">
+          <span>rrl</span>
+        </div>
+        <div class="product-name">Retirement Risk Lab</div>
+        <div class="product-tagline">Offline Monte Carlo retirement simulator</div>
+        <div class="product-platform">
+          <span>Mac · iPad · iPhone</span>
+          <span class="product-link-text">retirementrisklab.app →</span>
+        </div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -785,34 +711,58 @@ footer {
 <!-- FOOTER -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">
-      <img src="stillward-logo.svg" alt="stillward labs">
-      <div class="footer-tagline">Independent software built with<br>transparent methodology.</div>
+
+    <div>
+      <a href="/" class="logo">
+        <svg width="22" height="22" viewBox="0 0 44 44" fill="none">
+          <rect width="44" height="44" rx="7" fill="#2c4a6a"/>
+          <line x1="8" y1="34" x2="36" y2="34" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <line x1="12" y1="30" x2="30" y2="13" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+          <circle cx="12" cy="30" r="3.5" fill="white"/>
+          <circle cx="30" cy="13" r="3.5" fill="white"/>
+        </svg>
+        <span class="logo-sw">stillward</span><span class="logo-la">labs</span>
+      </a>
+      <p class="footer-about">A one-person independent software operation based in Grand Island, New York. Software made once, sold once, and built to last.</p>
+      <p class="footer-about">Contact: <a href="mailto:stillwardlabs@proton.me"><span class="footer-about">stillwardlabs@proton.me</span></a></p>
     </div>
+
     <div>
       <div class="footer-col-title">Products</div>
       <ul class="footer-links">
         <li>
-          <a href="https://retirementrisklab.app" target="_blank" rel="noopener">
-            Retirement Risk Lab
-            <span>retirementrisklab.app →</span>
+          <a href="https://lapilli-stones.com" target="_blank" rel="noopener">
+            Lapilli Stones
+            <span class="footer-link-domain">lapilli-stones.com</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://blackjacktrack.com" target="_blank" rel="noopener">
+            BlackjackTrack
+            <span class="footer-link-domain">blackjacktrack.com</span>
           </a>
         </li>
         <li>
           <a href="https://baselinelab.app" target="_blank" rel="noopener">
             Baseline Lab
-            <span>baselinelab.app →</span>
+            <span class="footer-link-domain">baselinelab.app</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://retirementrisklab.app" target="_blank" rel="noopener">
+            Retirement Risk Lab
+            <span class="footer-link-domain">retirementrisklab.app</span>
           </a>
         </li>
       </ul>
     </div>
+
+    
+
   </div>
   <div class="footer-bottom">
     <div class="footer-copy">© 2026 stillward labs. All rights reserved.</div>
-    <div class="footer-disclaimer">
-      <a href="/legal.html">Terms of Service</a>
-      <a href="/legal.html#refund">Refund Policy</a>
-    </div>
+    
   </div>
 </footer>
 
